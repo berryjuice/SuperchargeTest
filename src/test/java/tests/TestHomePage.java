@@ -12,4 +12,10 @@ public class TestHomePage extends BaseTest {
         String title = homePage.navigateToNextPage();
         Assertions.assertEquals("Sortter on Suomen reiluin lainavertailu", title);
     }
+
+    @Test
+    void nav2() throws InterruptedException {
+        String text = homePage.nav2();
+        Assertions.assertEquals("https://sortter.fi/lainahakemus/", text);
+    }
 }
