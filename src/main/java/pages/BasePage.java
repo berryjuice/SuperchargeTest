@@ -1,4 +1,20 @@
 package pages;
 
-public class BasePage {
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public abstract class BasePage {
+    static final int TIMEOUT = System.getenv("timeout") != null ? Integer.parseInt(System.getenv("timeout")) : 5;
+    static final String BASE_URL = System.getenv("base_url") != null ? System.getenv("base_url") : "https://sortter.fi/?disable-tracking";
+    WebDriver driver;
+    WebDriverWait wait;
+
+    BasePage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(this.driver, TIMEOUT);
+    }
+
+    void navigateToUrl(String urlPart) {
+        driver.get(BASE_URL + urlPart);
+    }
 }
